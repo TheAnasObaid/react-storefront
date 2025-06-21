@@ -2,12 +2,11 @@ import useProducts from "../hooks/useProducts";
 import { Grid, GridItem, Text } from "@chakra-ui/react";
 import ProductCard from "./ProductCard";
 
-const ProductsGrid = () => {
-  const { products, error, isLoading } = useProducts();
-
-  if (error) return <Text color="red.600">{error.message}</Text>;
+const ProductsGrid = ({ selectedCategory }) => {
+  const { products, error, isLoading } = useProducts(selectedCategory);
 
   if (isLoading) return <p>Loading...</p>;
+  if (error) return <Text color="red.600">{error.message}</Text>;
 
   return (
     <Grid
