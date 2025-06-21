@@ -1,7 +1,7 @@
 import { Box, Grid, GridItem } from "@chakra-ui/react";
+import CategoriesList from "./components/CategoriesList";
 import Navbar from "./components/Navbar";
 import ProductsGrid from "./components/ProductsGrid";
-import CategoriesList from "./components/CategoriesList";
 
 const App = () => {
   return (

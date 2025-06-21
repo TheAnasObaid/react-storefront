@@ -6,7 +6,11 @@ const ProductCard = ({ product }) => {
 
   return (
     <Card.Root maxWidth="sm" overflow="hidden">
-      <Image src={product.thumbnail} alt={product.discription} />
+      <Image
+        src={product.thumbnail}
+        objectFit="contain"
+        alt={product.discription}
+      />
       <Card.Body gap="2">
         <Badge width="fit" colorPalette={color}>
           {product.category}
