@@ -1,18 +1,9 @@
+import useProducts from "../hooks/useProducts";
 import { Grid, GridItem } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import apiClient, { controller } from "../services/api-client";
 import ProductCard from "./ProductCard";
 
 const ProductsGrid = () => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    apiClient
-      .get("/products", { signal: controller.signal })
-      .then((res) => setProducts(res.data.products));
-
-    return () => controller.abort();
-  }, []);
+  const products = useProducts();
 
   return (
     <Grid
