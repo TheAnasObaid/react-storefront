@@ -1,6 +1,7 @@
 import { Grid, GridItem, Heading } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import ProductCard from "./ProductCard";
 
 const ProductsGrid = () => {
   const [products, setProducts] = useState([]);
@@ -22,7 +23,7 @@ const ProductsGrid = () => {
     >
       {products.map((product) => (
         <GridItem key={product.id}>
-          <Heading>{product.title}</Heading>
+          <ProductCard product={product} />
         </GridItem>
       ))}
     </Grid>
