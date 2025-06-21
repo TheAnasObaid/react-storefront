@@ -1,3 +1,4 @@
+import { Grid, GridItem, Heading } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -11,10 +12,20 @@ const ProductsGrid = () => {
   }, []);
 
   return (
-    <ul>
-      {products &&
-        products.map((product) => <li key={product.id}>{product.title}</li>)}
-    </ul>
+    <Grid
+      templateColumns={{
+        sm: "1fr",
+        md: "repeat(2, 1fr)",
+        lg: "repeat(3, 1fr)",
+      }}
+      gap={3}
+    >
+      {products.map((product) => (
+        <GridItem key={product.id}>
+          <Heading>{product.title}</Heading>
+        </GridItem>
+      ))}
+    </Grid>
   );
 };
 export default ProductsGrid;
