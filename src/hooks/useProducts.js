@@ -1,18 +1,26 @@
 import { useEffect, useState } from "react";
-import apiClient, { controller } from "../services/api-client";
+import apiClient from "../services/api-client";
+import { CanceledError } from "axios";
 
 const useProducts = () => {
     const [products, setProducts] = useState([]);
+    const [error, setError] = useState("")
 
     useEffect(() => {
+        const controller = new AbortController()
+
         apiClient
             .get("/products", { signal: controller.signal })
-            .then((res) => setProducts(res.data.products));
+            .then((res) => setProducts(res.data.products))
+            .catch(err => {
+                if (err instanceof CanceledError) return;
+                setError(err)
+            })
 
-        return () => controller.abort();
+        return () => controller.abort()
     }, []);
 
-    return products
+    return { products, error }
 }
 
 export default useProducts;

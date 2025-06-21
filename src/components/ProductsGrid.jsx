@@ -1,9 +1,11 @@
 import useProducts from "../hooks/useProducts";
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Grid, GridItem, Text } from "@chakra-ui/react";
 import ProductCard from "./ProductCard";
 
 const ProductsGrid = () => {
-  const products = useProducts();
+  const { products, error } = useProducts();
+
+  if (error) return <Text color="red.600">{error.message}</Text>;
 
   return (
     <Grid
