@@ -1,6 +1,7 @@
 import { Box, Grid, GridItem } from "@chakra-ui/react";
 import Navbar from "./components/Navbar";
 import ProductsGrid from "./components/ProductsGrid";
+import CategoriesList from "./components/CategoriesList";
 
 const App = () => {
   return (
@@ -9,7 +10,9 @@ const App = () => {
         <GridItem colSpan="2">
           <Navbar />
         </GridItem>
-        <GridItem colSpan={{ sm: "2", md: "1" }}>Aside</GridItem>
+        <GridItem colSpan={{ sm: "2", md: "1" }}>
+          <CategoriesList />
+        </GridItem>
         <GridItem>
           <ProductsGrid />
         </GridItem>
