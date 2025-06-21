@@ -4,12 +4,7 @@ import { PiShoppingCartSimple } from "react-icons/pi";
 
 const Navbar = () => {
   return (
-    <HStack
-      maxWidth={1150}
-      marginX="auto"
-      padding={4}
-      justifyContent="space-between"
-    >
+    <HStack paddingY={3} justifyContent="space-between">
       <Link href="/" color="black">
         Storefront
       </Link>
