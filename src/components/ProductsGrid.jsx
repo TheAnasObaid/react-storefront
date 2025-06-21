@@ -3,9 +3,11 @@ import { Grid, GridItem, Text } from "@chakra-ui/react";
 import ProductCard from "./ProductCard";
 
 const ProductsGrid = () => {
-  const { products, error } = useProducts();
+  const { products, error, isLoading } = useProducts();
 
   if (error) return <Text color="red.600">{error.message}</Text>;
+
+  if (isLoading) return <p>Loading...</p>;
 
   return (
     <Grid

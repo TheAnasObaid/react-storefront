@@ -2,7 +2,11 @@ import { List } from "@chakra-ui/react";
 import useCategories from "../hooks/useCategories";
 
 const CategoriesList = () => {
-  const { categories } = useCategories();
+  const { categories, error, isLoading } = useCategories();
+
+  if (error) return null;
+
+  if (isLoading) return <p>Loading...</p>;
 
   return (
     <List.Root
