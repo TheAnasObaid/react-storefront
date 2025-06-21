@@ -1,15 +1,17 @@
-import { Grid, GridItem, Heading } from "@chakra-ui/react";
-import axios from "axios";
+import { Grid, GridItem } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import apiClient, { controller } from "../services/api-client";
 import ProductCard from "./ProductCard";
 
 const ProductsGrid = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("https://dummyjson.com/products")
+    apiClient
+      .get("/products", { signal: controller.signal })
       .then((res) => setProducts(res.data.products));
+
+    return () => controller.abort();
   }, []);
 
   return (
