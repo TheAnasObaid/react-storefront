@@ -1,4 +1,10 @@
+import { Button, HStack } from "@chakra-ui/react";
+
 const App = () => {
-  return <div>Hello React</div>;
+  return (
+    <HStack>
+      <Button>Button</Button>
+    </HStack>
+  );
 };
 export default App;
