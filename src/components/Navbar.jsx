@@ -1,13 +1,6 @@
-import {
-  Box,
-  HStack,
-  IconButton,
-  Input,
-  InputGroup,
-  Link,
-} from "@chakra-ui/react";
+import { Box, HStack, Input, InputGroup, Link } from "@chakra-ui/react";
 import { GoSearch } from "react-icons/go";
-import { PiShoppingCartSimple } from "react-icons/pi";
+import CartDrawer from "./CartDrawer";
 
 const Navbar = ({ onSearch }) => {
   return (
@@ -29,9 +22,7 @@ const Navbar = ({ onSearch }) => {
               }}
             />
           </InputGroup>
-          <IconButton variant="plain">
-            <PiShoppingCartSimple />
-          </IconButton>
+          <CartDrawer />
         </Box>
       </HStack>
     </>
