@@ -6,17 +6,18 @@ import {
   Float,
   IconButton,
   Portal,
-  Separator,
   Text,
   VStack,
 } from "@chakra-ui/react";
 import { useContext, useState } from "react";
 import { PiShoppingCartSimple } from "react-icons/pi";
 import CartContext from "../context/CartContext";
+import OrderContext from "../context/OrderContext";
 
 const CartDrawer = () => {
   const [open, setOpen] = useState(false);
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, setCartItems } = useContext(CartContext);
+  const { order, setOrder } = useContext(OrderContext);
 
   return (
     <Drawer.Root open={open} onOpenChange={(e) => setOpen(e.open)}>
@@ -50,8 +51,25 @@ const CartDrawer = () => {
               </VStack>
             </Drawer.Body>
             <Drawer.Footer>
-              <Button variant="outline">Cancel</Button>
-              <Button>Place Order</Button>
+              {order ? (
+                <Text>{order}</Text>
+              ) : (
+                <>
+                  <Button variant="outline" onClick={() => setOpen(false)}>
+                    Cancel
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setCartItems([{}]);
+                      setOrder(
+                        "Your order has been placed! Please wait for the delivery."
+                      );
+                    }}
+                  >
+                    Place Order
+                  </Button>
+                </>
+              )}
             </Drawer.Footer>
             <Drawer.CloseTrigger asChild>
               <CloseButton size="sm" />
