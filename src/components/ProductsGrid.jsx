@@ -1,8 +1,14 @@
 import useProducts from "../hooks/useProducts";
 import { Grid, GridItem, Text } from "@chakra-ui/react";
 import ProductCard from "./ProductCard";
+import { useContext } from "react";
+import CategoryContext from "../context/CategoryContext";
+import QueryContext from "../context/QueryContext";
 
-const ProductsGrid = ({ selectedCategory, searchQuery }) => {
+const ProductsGrid = () => {
+  const { selectedCategory } = useContext(CategoryContext);
+  const { searchQuery } = useContext(QueryContext);
+
   const { products, error, isLoading } = useProducts(
     selectedCategory,
     searchQuery

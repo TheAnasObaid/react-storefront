@@ -1,8 +1,12 @@
 import { Box, HStack, Input, InputGroup, Link } from "@chakra-ui/react";
 import { GoSearch } from "react-icons/go";
 import CartDrawer from "./CartDrawer";
+import { useContext } from "react";
+import QueryContext from "../context/QueryContext";
 
-const Navbar = ({ onSearch }) => {
+const Navbar = () => {
+  const { setSearchQuery } = useContext(QueryContext);
+
   return (
     <HStack
       paddingY={3}
@@ -17,7 +21,7 @@ const Navbar = ({ onSearch }) => {
           <Input
             placeholder="Search products"
             onKeyDown={(e) => {
-              if (e.key === "Enter") return onSearch(e.target.value);
+              if (e.key === "Enter") return setSearchQuery(e.target.value);
             }}
           />
         </InputGroup>

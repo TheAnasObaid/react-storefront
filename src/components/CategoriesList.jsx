@@ -1,8 +1,11 @@
 import { Button, Heading, List } from "@chakra-ui/react";
 import useCategories from "../hooks/useCategories";
+import { useContext } from "react";
+import CategoryContext from "../context/CategoryContext";
 
-const CategoriesList = ({ onSelectCategory }) => {
+const CategoriesList = () => {
   const { categories, error, isLoading } = useCategories();
+  const { setSelectedCategory } = useContext(CategoryContext);
 
   if (error) return null;
   if (isLoading) return <p>Loading...</p>;
@@ -21,7 +24,7 @@ const CategoriesList = ({ onSelectCategory }) => {
           <List.Item key={category.slug}>
             <Button
               variant="plain"
-              onClick={() => onSelectCategory(category.slug)}
+              onClick={() => setSelectedCategory(category.slug)}
             >
               {category.name}
             </Button>
