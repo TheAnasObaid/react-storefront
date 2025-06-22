@@ -6,12 +6,13 @@ import { useState } from "react";
 
 const App = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <Box maxW={1150} marginX="auto" paddingX={3}>
       <Grid templateColumns={{ sm: "1fr", md: "320px 1fr" }} gap={3}>
         <GridItem colSpan="2">
-          <Navbar />
+          <Navbar onSearch={(query) => setSearchQuery(query)} />
         </GridItem>
         <GridItem colSpan={{ sm: "2", md: "1" }}>
           <CategoriesList
@@ -19,7 +20,10 @@ const App = () => {
           />
         </GridItem>
         <GridItem>
-          <ProductsGrid selectedCategory={selectedCategory} />
+          <ProductsGrid
+            selectedCategory={selectedCategory}
+            searchQuery={searchQuery}
+          />
         </GridItem>
       </Grid>
     </Box>

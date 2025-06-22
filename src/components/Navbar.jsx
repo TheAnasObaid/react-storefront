@@ -1,8 +1,15 @@
-import { Box, HStack, IconButton, Link } from "@chakra-ui/react";
+import {
+  Box,
+  HStack,
+  IconButton,
+  Input,
+  InputGroup,
+  Link,
+} from "@chakra-ui/react";
 import { GoSearch } from "react-icons/go";
 import { PiShoppingCartSimple } from "react-icons/pi";
 
-const Navbar = () => {
+const Navbar = ({ onSearch }) => {
   return (
     <>
       <HStack
@@ -14,9 +21,14 @@ const Navbar = () => {
           Storefront
         </Link>
         <Box display="flex" gap={2}>
-          <IconButton variant="plain">
-            <GoSearch />
-          </IconButton>
+          <InputGroup startElement={<GoSearch />}>
+            <Input
+              placeholder="Search products"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") return onSearch(e.target.value);
+              }}
+            />
+          </InputGroup>
           <IconButton variant="plain">
             <PiShoppingCartSimple />
           </IconButton>

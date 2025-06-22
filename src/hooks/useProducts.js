@@ -2,7 +2,7 @@ import { CanceledError } from "axios";
 import { useEffect, useState } from "react";
 import apiClient from "../services/apiClient";
 
-const useProducts = (category) => {
+const useProducts = (category, searchQuery) => {
     const [products, setProducts] = useState([]);
     const [error, setError] = useState("");
     const [isLoading, setLoading] = useState(false);
@@ -10,10 +10,10 @@ const useProducts = (category) => {
     useEffect(() => {
         setLoading(true);
         const controller = new AbortController();
-        const query = category ? "/products/category/" + category : "/products"
+        const query = category ? "/products/category/" + category : searchQuery ? "/products/search?q=" + searchQuery : "/products"
 
         apiClient
-            .get(query, { signal: controller.signal })
+            .get(query, { signal: controller.signal, })
             .then((res) => {
                 setProducts(res.data.products)
                 setLoading(false)
@@ -25,7 +25,7 @@ const useProducts = (category) => {
             })
 
         return () => controller.abort()
-    }, [category]);
+    }, [category, searchQuery]);
 
     return { products, error, isLoading }
 }
