@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import getColor from "../services/getColor";
 import { Badge, Button, Card, Image, Text } from "@chakra-ui/react";
+import CartContext from "../context/CartContext";
 
 const ProductCard = ({ product }) => {
+  const { cartItems, setCartItems } = useContext(CartContext);
   const color = getColor(product);
 
   return (
@@ -22,7 +25,22 @@ const ProductCard = ({ product }) => {
         </Text>
       </Card.Body>
       <Card.Footer gap="2">
-        <Button variant="solid">Add to cart</Button>
+        <Button
+          variant="solid"
+          onClick={() => {
+            if (cartItems)
+              setCartItems([
+                ...cartItems,
+                { id: product.id, title: product.title, price: product.price },
+              ]);
+            else
+              setCartItems([
+                { id: product.id, title: product.title, price: product.price },
+              ]);
+          }}
+        >
+          Add to cart
+        </Button>
       </Card.Footer>
     </Card.Root>
   );
